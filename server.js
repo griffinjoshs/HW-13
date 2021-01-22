@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Import routes and give the server access to them.
-require("./routes/htmlroutes")(app);
+require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes")(app);
 
 const connectionString = process.env.DB_CONNECTION.replace('<password>', process.env.DB_PASSWORD).replace('<dbname>', process.env.DB_NAME)

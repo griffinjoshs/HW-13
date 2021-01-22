@@ -6,7 +6,10 @@ const schema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    totalDuration: Number,
+    totalDuration: {
+        type: Number,
+        default: 0
+    },
     exercises: [{
         name: String,
         type: {
@@ -23,7 +26,7 @@ const schema = new mongoose.Schema({
 
 schema.pre('save', function(next) {
 
-    this.totalDuration = Array.from(this.exercises).map(e => e.duration).reduce((a, b) => a + b);
+    if (this.exercises.length) this.totalDuration = Array.from(this.exercises).map(e => e.duration).reduce((a, b) => a + b);
     next();
     
 });

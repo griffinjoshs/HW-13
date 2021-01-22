@@ -11,6 +11,7 @@ module.exports = function(app){
 
     // Create A new workout
     app.post('/api/workouts', async (req, res) => {
+        console.log(req.body)
         const doc = await Workout.create(req.body);
         res.json(doc);
     });
